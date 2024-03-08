@@ -188,6 +188,17 @@ func (u *UserProvider) GetUserByName(ctx context.Context, name string) (*User, e
 	return nil, nil
 }
 
+func (u *UserProvider) GetUserByNameTestNoArgs(ctx context.Context) (*User, error) {
+	fmt.Printf("Req GetUserByNameTestNoArgs")
+	// get from cache directly
+	r, ok := cache.GetByName("tc")
+	if ok {
+		fmt.Printf("Req GetUserByNameTestNoArgs result: %#v \n", r)
+		return r, nil
+	}
+	return nil, nil
+}
+
 // GetUserByCode query by code, single param, PX config GET.
 func (u *UserProvider) GetUserByCode(ctx context.Context, code int64) (*User, error) {
 	fmt.Printf("Req GetUserByCode name: %#v \n", code)

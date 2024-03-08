@@ -5,7 +5,7 @@ go 1.15
 require (
 	dubbo.apache.org/dubbo-go/v3 v3.0.2-0.20220519062747-f6405fa79d5c
 	github.com/apache/dubbo-go-hessian2 v1.11.3
-	github.com/apache/dubbo-go-pixiu v1.0.0-rc2
+	github.com/apache/dubbo-go-pixiu v1.0.0-rc3
 	github.com/coreos/go-systemd v0.0.0-20190620071333-e64a0ec8b42a // indirect
 	github.com/dubbogo/grpc-go v1.42.9
 	github.com/dubbogo/triple v1.1.8

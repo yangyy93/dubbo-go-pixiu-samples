@@ -18,6 +18,7 @@
 package test
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -47,4 +48,24 @@ func TestPost1(t *testing.T) {
 	assert.Equal(t, 200, resp.StatusCode)
 	s, _ := ioutil.ReadAll(resp.Body)
 	assert.True(t, strings.Contains(string(s), "0001"))
+}
+
+func TestPost2(t *testing.T) {
+	url := "http://localhost:8881/BDTService/com.dubbogo.pixiu.UserService/1.0.0/GetUserByNameTestNoArgs"
+	client := &http.Client{Timeout: 5 * time.Second}
+	req, err := http.NewRequest("POST", url, nil)
+	req.Header.Set("x-dubbo-http1.1-dubbo-version", "1.0.0")
+	req.Header.Set("x-dubbo-service-protocol", "dubbo")
+	req.Header.Set("x-dubbo-service-version", "0.1.1")
+	req.Header.Set("x-dubbo-service-group", "test")
+
+	assert.NoError(t, err)
+	req.Header.Add("Content-Type", "application/json")
+	resp, err := client.Do(req)
+	assert.NoError(t, err)
+	assert.NotNil(t, resp)
+	assert.Equal(t, 200, resp.StatusCode)
+	s, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println(string(s))
+	//assert.True(t, strings.Contains(string(s), "0001"))
 }
